@@ -13,9 +13,9 @@ public class Health : MonoBehaviour
 {
 	public bool canDie = true;					// Whether or not this health can die
 	
-	public float startingHealth = 100.0f;		// The amount of health to start with
-	public float maxHealth = 100.0f;			// The maximum amount of health
-	private float currentHealth;				// The current ammount of health
+	public int startingHealth = 100;		// The amount of health to start with
+	public int maxHealth = 100;			// The maximum amount of health
+	public int currentHealth;				// The current ammount of health
 
 	public bool replaceWhenDead = false;		// Whether or not a dead replacement should be instantiated.  (Useful for breaking/shattering/exploding effects)
 	public GameObject deadReplacement;			// The prefab to instantiate when this GameObject dies
@@ -26,26 +26,29 @@ public class Health : MonoBehaviour
 	public GameObject deathCam;					// The camera to activate when the player dies
 
 	private bool dead = false;					// Used to make sure the Die() function isn't called twice
+	public PlayerHealth playerHealth;
 
 	// Use this for initialization
 	void Start()
 	{
 		// Initialize the currentHealth variable to the value specified by the user in startingHealth
-		currentHealth = startingHealth;
+		currentHealth = maxHealth;
+		playerHealth.SetMaxHealth(currentHealth);
 	}
 
-	public void ChangeHealth(float amount)
+	public void ChangeHealth(int amount)
 	{
 		// Change the health by the amount specified in the amount variable
 		currentHealth += amount;
+		playerHealth.SetHealth(currentHealth);
 
 		// If the health runs out, then Die.
 		if (currentHealth <= 0 && !dead && canDie)
 			Die();
 
 		// Make sure that the health never exceeds the maximum health
-		else if (currentHealth > maxHealth)
-			currentHealth = maxHealth;
+		//else if (currentHealth > maxHealth)
+		//	currentHealth = maxHealth;
 	}
 
 	public void Die()
