@@ -35,20 +35,22 @@ public class FirstPersonController : MonoBehaviour
         GetTouchInput();
 
 
-        if (rightFingerId != -1) {
+        if (rightFingerId != -1)
+        {
             // Ony look around if the right finger is being tracked
-            Debug.Log("Rotating");
+
             LookAround();
         }
 
         if (leftFingerId != -1)
         {
             // Ony move if the left finger is being tracked
-            Debug.Log("Moving");
+
         }
     }
 
-    void GetTouchInput() {
+    void GetTouchInput()
+    {
         // Iterate through all the detected touches
         for (int i = 0; i < Input.touchCount; i++)
         {
@@ -79,13 +81,11 @@ public class FirstPersonController : MonoBehaviour
                     {
                         // Stop tracking the left finger
                         leftFingerId = -1;
-                        Debug.Log("Stopped tracking left finger");
                     }
                     else if (t.fingerId == rightFingerId)
                     {
                         // Stop tracking the right finger
                         rightFingerId = -1;
-                        Debug.Log("Stopped tracking right finger");
                     }
 
                     break;
@@ -109,7 +109,8 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    void LookAround() {
+    void LookAround()
+    {
 
         // vertical (pitch) rotation
         cameraPitch = Mathf.Clamp(cameraPitch - lookInput.y, -30f, 75f);
