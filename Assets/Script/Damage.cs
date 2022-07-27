@@ -5,7 +5,13 @@ using UnityEngine;
 public class Damage : MonoBehaviour
 {
     public int takeDamage;
-   // public GameObject projectile;
+    private AudioSource audioSource;
+    public AudioClip audioClips;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,9 +20,6 @@ public class Damage : MonoBehaviour
         {
             playerDamageComponent.TakeDamage(takeDamage);
         }
+        audioSource.PlayOneShot(audioClips);
     }
-   // public void Projectile()
-   // {
-   //     Instantiate(projectile, transform.position, Quaternion.identity);
-   // }
 }
