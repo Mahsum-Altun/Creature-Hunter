@@ -6,7 +6,9 @@ public class Damage : MonoBehaviour
 {
     public int takeDamage;
     private AudioSource audioSource;
-    public AudioClip audioClips;
+    public float audioSourceVolume;
+    public AudioClip audioClips1;
+    public AudioClip audioClips2;
 
     private void Awake()
     {
@@ -20,6 +22,8 @@ public class Damage : MonoBehaviour
         {
             playerDamageComponent.TakeDamage(takeDamage);
         }
-        audioSource.PlayOneShot(audioClips);
+        audioSource.PlayOneShot(audioClips1);
+        audioSource.PlayOneShot(audioClips2);
+        audioSource.volume = audioSourceVolume;
     }
 }
