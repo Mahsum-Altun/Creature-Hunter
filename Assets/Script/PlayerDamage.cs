@@ -13,7 +13,10 @@ public class PlayerDamage : MonoBehaviour
     public AudioClip[] adClips;
     bool playerDieClips = false;
     public GameObject touchScript;
+    public GameObject cameraColor;
+    public GameObject weaponDie;
     public Button fireButton;
+    public Button weaponSelectButton;
 
 
     private Animator playerdie;
@@ -43,7 +46,11 @@ public class PlayerDamage : MonoBehaviour
             playerdie.SetBool("PlayerDid", Playerdie);
             EndGame();
             touchScript.GetComponent<FirstPersonController>().enabled = false;
-            fireButton.enabled = false;
+            cameraColor.SetActive(true);
+            weaponDie.SetActive(false);
+            fireButton.gameObject.SetActive(false);
+            weaponSelectButton.enabled = false;
+
 
 
 
