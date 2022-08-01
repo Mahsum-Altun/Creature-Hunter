@@ -9,6 +9,7 @@ public class EnemyAi : MonoBehaviour
     Rigidbody rb;
     Transform target;
     Vector3 moveDirection;
+    private Animator enemyAttack;
 
 
     private void Awake()
@@ -42,6 +43,7 @@ public class EnemyAi : MonoBehaviour
         {
             target = GameObject.Find("Enemy2 (3)").GetComponent<Transform>();
         }
+        enemyAttack = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -74,7 +76,7 @@ public class EnemyAi : MonoBehaviour
     {
 
 
-        if (other.gameObject.tag == ("EnemyStop2") && gameObject.tag == "Zombie1" || other.gameObject.tag == ("EnemyStop2") && gameObject.tag == "Zombie2" || other.gameObject.tag == ("EnemyStop2") && gameObject.tag == "Zombie3" || other.gameObject.tag == ("EnemyStop2") && gameObject.tag == "Zombie4")
+        if (other.gameObject.tag == ("Enemy2") && gameObject.tag == ("Zombie1") || other.gameObject.tag == ("Enemy2 (1)") && gameObject.tag == ("Zombie2") || other.gameObject.tag == ("Enemy2 (2)") && gameObject.tag == ("Zombie3") || other.gameObject.tag == ("Enemy2 (3)") && gameObject.tag == ("Zombie4"))
         {
 
             speed = 0;
@@ -84,9 +86,11 @@ public class EnemyAi : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             targetRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 180 * Time.fixedDeltaTime);
             rb.MoveRotation(targetRotation);
+            bool EnemyAttack = true;
+            enemyAttack.SetBool("Attack", EnemyAttack);
         }
 
-        else if (other.gameObject.tag == ("EnemyStop1") && gameObject.tag == "Warrok1" || other.gameObject.tag == ("EnemyStop1") && gameObject.tag == "Warrok2" || other.gameObject.tag == ("EnemyStop1") && gameObject.tag == "Warrok3")
+        else if (other.gameObject.tag == "Enemy1" && gameObject.tag == "Warrok1" || other.gameObject.tag == "Enemy1 (1)" && gameObject.tag == "Warrok2" || other.gameObject.tag == "Enemy1 (2)" && gameObject.tag == "Warrok3")
         {
             speed = 0;
             target = GameObject.Find("Player").GetComponent<Transform>();
@@ -95,6 +99,8 @@ public class EnemyAi : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             targetRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 180 * Time.fixedDeltaTime);
             rb.MoveRotation(targetRotation);
+            bool EnemyAttack = true;
+            enemyAttack.SetBool("Attack", EnemyAttack);
 
         }
     }

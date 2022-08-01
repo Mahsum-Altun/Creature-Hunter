@@ -22,7 +22,7 @@ public class ActiveWeapon : MonoBehaviour
 
     void Start()
     {
-
+        Pistol();
     }
 
 

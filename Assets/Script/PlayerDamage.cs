@@ -19,14 +19,14 @@ public class PlayerDamage : MonoBehaviour
     public Button weaponSelectButton;
 
 
-    private Animator playerdie;
+    public Animator playerdie;
     public int delay;
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
         playerHealth.SetMaxHealth(maxHealth);
-        playerdie = GameObject.Find("PlayerDid").GetComponent<Animator>();
+        playerdie = GameObject.Find("Player").GetComponent<Animator>();
 
 
     }
